@@ -89,5 +89,5 @@ what is needed.\
 been preselected. Use the up/down arrows to move, and the spacebar to toggle
 selection.)
 
-The debian development versions of the netinstall iso files are here:
-https://www.debian.org/devel/debian-installer/
+The netinstall download and links to documentation can be found here:
+https://www.debian.org/CD/netinst/
