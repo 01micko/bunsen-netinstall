@@ -340,7 +340,8 @@ before running the script again." 1
     done
 }
 
-# This function is no longer needed. User files are installed by bl-user-setup on first login.
+# This function is no longer needed. User files are installed by bl-user-setup (shipped with bunsen-configs) on first login.
+# If you adapt this netinstall script for other systems you might want to use it.
 install_userdir() { # recursively copy contents of $1 into $2, make backups of replaced files in $2 and keep records of changes
     [[ $# = 2 ]] || giveup "install_userdir() needs two arguments" 1
     [[ -d $1 ]] || giveup "$1 is not an existing directory." 1
@@ -388,7 +389,7 @@ before running the script again." 1
 bigmsg "Adjusting package management (apt) settings."
 
 # gen_sources aims to preserve whatever mirrors user has configured
-# while adding 'contrib' and 'non-free'
+# while adding 'contrib', 'non-free-firmware' and 'non-free'
 
 if [[ -r gen_sources ]]; then
     if [[ -s  sysfiles1/etc/apt/sources.list ]]; then

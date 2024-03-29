@@ -19,7 +19,7 @@ do
     sudo addgroup "$i"
     sudo adduser $user $i || errmsg "failed to add user: $user to group: $i"
 done
-for i in netdev systemd-journal lpadmin scanner bluetooth
+for i in sudo netdev systemd-journal lpadmin scanner bluetooth
 do
     sudo addgroup --system "$i"
     sudo adduser $user $i || errmsg "failed to add user: $user to group: $i"

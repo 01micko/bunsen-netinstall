@@ -21,4 +21,3 @@ then
 else
 	giveup "BunsenLabs APT key not found in $apt_keydir." 1
 fi
-
