@@ -65,7 +65,7 @@ gen_sources: commands to edit /etc/apt/sources.list\
 preinstall_commands: commands to run before installing packages and files\
 postinstall_commands: commands to run after installing packages and files\
 config: sets some directory paths etc\
-bunsen-netinstall-logs: folder to copy into user's ~/.cache directory\
+bunsen-netinstall-logs: folder to copy into user's ~/.cache directory
 
 DEBIAN NETINSTALL HINTS
 -----------------------
