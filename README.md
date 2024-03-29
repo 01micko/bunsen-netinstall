@@ -51,21 +51,21 @@ are other things you might want to adjust, eg to install on Devuan...
 FILES IN THIS COLLECTION
 ------------------------
 
-README.md: this file
-LICENSE: a copy of the GPL3 license
-install: the installation script
-copyright: GNU licence statement
-greeting: message to user
-pkgs-recs: packages to install with recommends
-pkgs-norecs: packages to install without recommends
-sysfiles1: system files to copy in before installing packages (mainly apt-related)
-sysfiles2: system files to copy in after installing packages
-apt-keys: script to install the BunsenLabs Apt key
-gen_sources: commands to edit /etc/apt/sources.list
-preinstall_commands: commands to run before installing packages and files
-postinstall_commands: commands to run after installing packages and files
-config: sets some directory paths etc
-bunsen-netinstall-logs: folder to copy into user's ~/.cache directory
+README.md: this file\
+LICENSE: a copy of the GPL3 license\
+install: the installation script\
+copyright: GNU licence statement\
+greeting: message to user\
+pkgs-recs: packages to install with recommends\
+pkgs-norecs: packages to install without recommends\
+sysfiles1: system files to copy in before installing packages (mainly apt-related)\
+sysfiles2: system files to copy in after installing packages\
+apt-keys: script to install the BunsenLabs Apt key\
+gen_sources: commands to edit /etc/apt/sources.list\
+preinstall_commands: commands to run before installing packages and files\
+postinstall_commands: commands to run after installing packages and files\
+config: sets some directory paths etc\
+bunsen-netinstall-logs: folder to copy into user's ~/.cache directory\
 
 DEBIAN NETINSTALL HINTS
 -----------------------
@@ -84,7 +84,7 @@ You will then be given 'sudo' permissions, which will be needed in the script.
 2) At the "software selection" stage DESELECT EVERYTHING except "standard
 system utilities".
 You will have a core system only, on which the netinstall installer will add
-what is needed.
+what is needed.\
 (Some software items will be marked with an asterisk, indicating that they have
 been preselected. Use the up/down arrows to move, and the spacebar to toggle
 selection.)
