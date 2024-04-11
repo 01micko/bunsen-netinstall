@@ -35,7 +35,7 @@ set -o nounset # do not accept unset variables
 . config
 for i in log_dir backup_dir backup_suffix necessary_files replaced_dirs
 do
-    [[ $i ]] || { echo "$0: Config variable $i has not been set. Please check the \"config\" file." >&2; exit 1; }
+    [[ -n $i ]] || { echo "$0: Config variable $i has not been set. Please check the \"config\" file." >&2; exit 1; }
 done
 install_backup_dir="${backup_dir}"/install
 snapshots_dir="${backup_dir}"/snapshots
@@ -64,7 +64,7 @@ bigmsg() {
     $1
 ------------------------------------------------"
     tput sgr0
-    sleep 2
+    sleep 3
 }
 
 errmsg() {
@@ -94,7 +94,7 @@ $1
 (press enter to continue, any other key to exit)
 "
     read -srn1
-    [[ $REPLY ]] && giveup "terminated by $user, goodbye!" $2
+    [[ -n $REPLY ]] && giveup "terminated by $user, goodbye!" "$2"
     log "$user chose to continue"
 }
 
@@ -199,13 +199,13 @@ rm "$logfile" # finished with temporary logfile
 logfile="$log_dir"/install.log # this logfile will remain after the install
 exec > >( tee -a "$logfile" ) 2>&1
 bigmsg "Messages are being saved to $logfile"
-cp -f pkgs-recs pkgs-norecs config "$log_dir"
+cp -f pkgs-recs pkgs-recs-lite pkgs-norecs pkgs-norecs-lite config "$log_dir"
 
 # check debian version FIXME Is /etc/debian_version the best way? Use lsb_release -cs ?
 #grep -qE '(\<bullseye\>|(^|[^a-zA-Z0-9.])11($|[^a-zA-Z0-9]))' /etc/debian_version && msg "Debian version: OK"|| { warnlog "/etc/debian_version reads: $(cat /etc/debian_version)"
 usingDebStable && msg "Debian version: OK" || {
-    confirm "You do not appear to have Debian Bookworm
-or BunsenLabs Boron installed.
+    confirm "You do not appear to have Debian $debian_base
+or BunsenLabs $bunsen_codename installed.
 If you think this is incorrect,
 you may wish to continue with the installation,
 otherwise it would be safer to stop.
@@ -226,6 +226,36 @@ Please enter it now and it will be stored for a while.
 sudo -v || giveup "You do not appear to have permission to use sudo,
 which is needed in this script.
 Please make the necessary adjustments to your system and try again." 1
+
+pkgs_norecs_file=
+pkgs_recs_file=
+
+bigmsg "You can choose to install the \"full\" package list, which is the same as
+what is installed by the usual iso file, or alternatively install the \"lite\" list,
+which is slightly smaller and more suitable for older machines"
+
+PS3='Please enter the number of your choice > '
+
+select list in 'full' 'lite'
+do
+    case "$list" in
+    full)
+        pkgs_norecs_file=pkgs-norecs
+        pkgs_recs_file=pkgs-recs
+        break
+        ;;
+    lite)
+        pkgs_norecs_file=pkgs-norecs-lite
+        pkgs_recs_file=pkgs-recs-lite
+        break
+        ;;
+    esac
+done
+
+for i in "$pkgs_norecs_file" "$pkgs_recs_file"
+do
+    [[ -r $i ]] || giveup "Cannot read package list $i" 1
+done
 
 # initial tweaking
 bigmsg "Adjusting some system settings."
@@ -438,14 +468,14 @@ There may be around 1000 packages to install,
 
 # recommends settings here will override whatever is set in apt.conf.d
 
-norecs=($( sed 's/\#.*$//' pkgs-norecs )) && [[ ${#norecs[@]} -gt 0 ]] && {
+norecs=($( sed 's/\#.*$//' "$pkgs_norecs_file" )) && [[ ${#norecs[@]} -gt 0 ]] && {
     bigmsg "Installing packages, without recommends."
     sudo apt-get --no-install-recommends --quiet install "${norecs[@]}"  || {
         warnlog "'apt-get --no-install-recommends --quiet install' returned an error"
         confirm "There was a problem installing some packages.
     There may be some information in ${logfile}.
     You might want to exit the script, comment out packages causing problems
-    in pkgs-norecs, and run the script again.
+    in ${pkgs_norecs_file}, and run the script again.
     If the missing packages are unimportant, you might prefer to continue
     with the install and fix the issues later.
     Would you like to ignore the errors and continue now,
@@ -453,14 +483,14 @@ norecs=($( sed 's/\#.*$//' pkgs-norecs )) && [[ ${#norecs[@]} -gt 0 ]] && {
     }
 }
 
-recs=($( sed 's/\#.*$//' pkgs-recs )) && [[ ${#recs[@]} -gt 0 ]] && {
+recs=($( sed 's/\#.*$//' "$pkgs_recs_file" )) && [[ ${#recs[@]} -gt 0 ]] && {
     bigmsg "Installing packages, with recommends."
     sudo apt-get -o APT::Install-Recommends=true --quiet install "${recs[@]}"  || {
     warnlog "'apt-get -o APT::Install-Recommends=true --quiet install' returned an error"
     confirm "There was a problem installing some packages.
 There may be some information in ${logfile}.
 You might want to exit the script, comment out packages causing problems
-in pkgs-recs, and run the script again.
+in ${pkgs_recs_file}, and run the script again.
 If the missing packages are unimportant, you might prefer to continue
 with the install and fix the issues later.
 Would you like to ignore the errors and continue now,
