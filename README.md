@@ -71,7 +71,7 @@ greeting: message to user\
 pkgs-recs: packages to install with recommends\
 pkgs-norecs: packages to install without recommends\
 pkgs-recs-lite: packages to install with recommends (lite package list)\
-pkgs-norecs: packages to install without recommends (lite package list)\
+pkgs-norecs-lite: packages to install without recommends (lite package list)\
 sysfiles1: system files to copy in before installing packages (mainly apt-related)\
 sysfiles2: system files to copy in after installing packages\
 apt-keys: script to install the BunsenLabs Apt key\
