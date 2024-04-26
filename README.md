@@ -29,6 +29,18 @@ Boot your Debian cli system, log in and run these commands, as a normal user:
 The installation process will start.
 Follow any prompts that appear on the screen.
 
+You will be asked to choose between a regular install and a "lite" install.
+The lite version installs slightly fewer packages and uses fewer system resources,
+for example by not using composition or menu icons.
+It also makes some app substitutions, notably that the web browser is dillo and
+the text editor is nano.
+
+Dillo has a very limited feature set but it's fast and light, and
+good enough for finding online documentation.
+
+Nano in a terminal has slightly different keyboard shortcuts from most graphical
+text editors, but is usable for simple edits to configuration files.
+
 A folder called bunsen-netinstall-logs will be added to your ~/.cache folder.
 (The file bunsen-netinstall-logs/install.log will contain verbose information
 about the install process.)
@@ -58,6 +70,8 @@ copyright: GNU licence statement\
 greeting: message to user\
 pkgs-recs: packages to install with recommends\
 pkgs-norecs: packages to install without recommends\
+pkgs-recs-lite: packages to install with recommends (lite package list)\
+pkgs-norecs: packages to install without recommends (lite package list)\
 sysfiles1: system files to copy in before installing packages (mainly apt-related)\
 sysfiles2: system files to copy in after installing packages\
 apt-keys: script to install the BunsenLabs Apt key\
