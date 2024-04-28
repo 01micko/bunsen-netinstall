@@ -535,6 +535,20 @@ No need to backup $i"
 shopt -s dotglob # want dotfiles too
 install_sysdir sysfiles2 / "${backup_dir}"
 shopt -u dotglob
+
+# TODO find a more elegant way of handling this:
+# hack to cope with /etc/network/interfaces being undesirably nuked when network-manager is not installed
+[[ $(dpkg-query --show --showformat='${db:Status-Abbrev}' 'network-manager' 2>/dev/null) =~ ^(i|h)i' '$ ]] || {
+    msg "Restoring overwritten /etc/network/interfaces
+from backup at ${backup_dir}/etc/network/interfaces
+because network-manager is not installed."
+    [[ -r "${backup_dir}/etc/network/interfaces" ]] || {
+        errmsg "Cannot restore /etc/network/interfaces from backup.
+You may need to edit this file manually to get a working network."
+    }
+    sudo cp "${backup_dir}/etc/network/interfaces" /etc/network/interfaces
+}
+
 bigmsg "system files installed"
 
 #bigmsg "Updating your personal configuration files.
