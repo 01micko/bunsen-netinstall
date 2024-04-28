@@ -29,11 +29,17 @@ Boot your Debian cli system, log in and run these commands, as a normal user:
 The installation process will start.
 Follow any prompts that appear on the screen.
 
-You will be asked to choose between a regular install and a "lite" install.
-The lite version installs slightly fewer packages and uses fewer system resources,
+You will be asked to choose between a regular "full" install, a "lite" install
+and a "base" install.
+
+The "lite" version installs slightly fewer packages and uses fewer system resources,
 for example by not using composition or menu icons.
 It also makes some app substitutions, notably that the web browser is dillo and
 the text editor is nano.
+
+The "base" install is a minimal set of packages just sufficient to make
+a working BunsenLabs desktop. A lot of commonly used utilities have been omitted,
+and dillo and nano are substituted as with the "lite" install.
 
 Dillo has a very limited feature set but it's fast and light, and
 good enough for finding online documentation.
@@ -57,8 +63,9 @@ the future, the same config files should still work.
 
 If you want to customize the installation process before running the installer
 then use a cli editor like nano or vim to edit any of the files to your taste.
-You might particularly want to look at pkgs-recs and pkgs-norecs, but there
-are other things you might want to adjust, eg to install on Devuan...
+You might particularly want to look at pkgs-recs and pkgs-norecs
+(or their "lite" or "base" equivalents), but there are other things
+you might want to adjust, eg to install on Devuan...
 
 FILES IN THIS COLLECTION
 ------------------------
@@ -72,6 +79,8 @@ pkgs-recs: packages to install with recommends\
 pkgs-norecs: packages to install without recommends\
 pkgs-recs-lite: packages to install with recommends (lite package list)\
 pkgs-norecs-lite: packages to install without recommends (lite package list)\
+pkgs-recs-base: packages to install with recommends (base package list)\
+pkgs-norecs-base: packages to install without recommends (base package list)\
 sysfiles1: system files to copy in before installing packages (mainly apt-related)\
 sysfiles2: system files to copy in after installing packages\
 apt-keys: script to install the BunsenLabs Apt key\
