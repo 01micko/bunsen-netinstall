@@ -1,7 +1,9 @@
 This is an experimental network installer for
-BunsenLabs Linux on cli Debian Trixie.
+BunsenLabs Linux on cli Debian Trixie,
+in a Wayland environment using the labwc compositor.
 
 It will use the BunsenLabs Carbon repository
+and micko01's experimental repository
 to download and install necessary packages,
 along with packages from the Debian repositories,
 and do any other necessary configuration.

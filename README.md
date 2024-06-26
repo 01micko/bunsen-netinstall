@@ -1,10 +1,15 @@
 EXPERIMENTAL
-This "Carbon" branch is for development and testing purposes.
-Do not use it if you want to guarantee a working system!
+This "carbon-wayland" branch is for development and testing purposes only.
+Do not use it if you want a working system!
 
 
-This is a collection of files intended to install a close approximation of
-BunsenLabs Linux on a basic command-line-only Debian Trixie system.
+This is a collection of files intended to install something like
+BunsenLabs Linux on a basic command-line-only Debian Trixie system,
+in a Wayland environment using the labwc compositor.
+
+Along with Debian and BunsenLabs packages, experimental packages from
+forum member micko01's experimental repository are also used:
+https://01micko.github.io/links.html
 
 Bug reports are very welcome! Please visit the bunsenlabs forums:
 https://forums.bunsenlabs.org/viewforum.php?id=14
@@ -37,8 +42,8 @@ Boot your Debian cli system, log in and run these commands, as a normal user:
 The installation process will start.
 Follow any prompts that appear on the screen.
 
-You will be asked to choose between a regular "full" install, a "lite" install
-and a "base" install.
+You may be asked to choose between a regular "full" install, a "lite" install
+and a "base" install, but at this point you should choose the minimal "base" install.
 
 The "lite" version installs slightly fewer packages and uses fewer system resources,
 for example by not using composition or menu icons.
