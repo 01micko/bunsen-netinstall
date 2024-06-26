@@ -33,7 +33,7 @@ set -o nounset # do not accept unset variables
 
 [[ -r config ]] || { echo "$0: Cannot find necessary file \"config\"" >&2; exit 1; }
 . config
-for i in log_dir backup_dir backup_suffix necessary_files replaced_dirs
+for i in debian_base bunsen_codename log_dir backup_dir backup_suffix necessary_files replaced_dirs
 do
     [[ -n $i ]] || { echo "$0: Config variable $i has not been set. Please check the \"config\" file." >&2; exit 1; }
 done
@@ -45,12 +45,6 @@ logfile=error.log # temporary logfile in installer directory
 exec > >( tee -a "$logfile" ) 2>&1
 
 user=$USER
-
-# Debian release that this BunsenLabs system will be based on (lowercase)
-debian_base=bookworm
-
-# in case script is run after installing bunsen-os-release (lowercase too)
-bunsen_codename=boron
 
 msg() {
     echo "
@@ -173,7 +167,7 @@ echo "
 $( < greeting )
 
 This script is expected to be run just after completing a netinstall
-installation of the Debian Bookworm CORE SYSTEM ONLY.
+installation of the Debian ${debian_base^} CORE SYSTEM ONLY.
 (See \"Debian Netinstall Hints\" in the README.md file.)
 "
 confirm "Would you like to start the install now?" 0

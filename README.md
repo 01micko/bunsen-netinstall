@@ -1,5 +1,10 @@
+EXPERIMENTAL
+This "Carbon" branch is for development and testing purposes.
+Do not use it if you want to guarantee a working system!
+
+
 This is a collection of files intended to install a close approximation of
-BunsenLabs Linux on a basic command-line-only Debian Bookworm system.
+BunsenLabs Linux on a basic command-line-only Debian Trixie system.
 
 Bug reports are very welcome! Please visit the bunsenlabs forums:
 https://forums.bunsenlabs.org/viewforum.php?id=14
@@ -11,19 +16,22 @@ https://github.com/BunsenLabs/bunsen-netinstall/issues
 HOW TO USE
 ----------
 
-Download the latest Debian bookworm "netinst" .iso file for your architecture.
-i386: https://cdimage.debian.org/cdimage/release/current/i386/iso-cd/
-amd64: https://cdimage.debian.org/cdimage/release/current/amd64/iso-cd/
+Download the latest Debian trixie "netinstall" .iso file 
 and use it to install a basic cli system.
+
+https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso
+
+At present only "weekly" amd64 builds are available, 
+and there is no longer a Debian i386 netinstall iso image.
 
 Make sure sudo is enabled. (See "DEBIAN NETINSTALL HINTS" below.)
 
 Boot your Debian cli system, log in and run these commands, as a normal user:
 (A fresh copy of this bunsen-netinstall package will be downloaded.)
 
-    wget https://github.com/bunsenlabs/bunsen-netinstall/archive/boron.tar.gz
-    tar -xpf boron.tar.gz
-    cd bunsen-netinstall-boron
+    wget https://github.com/bunsenlabs/bunsen-netinstall/archive/carbon.tar.gz
+    tar -xpf carbon.tar.gz
+    cd bunsen-netinstall-carbon
     ./install
 
 The installation process will start.
@@ -83,20 +91,20 @@ pkgs-recs-base: packages to install with recommends (base package list)\
 pkgs-norecs-base: packages to install without recommends (base package list)\
 sysfiles1: system files to copy in before installing packages (mainly apt-related)\
 sysfiles2: system files to copy in after installing packages\
-apt-keys: script to install the BunsenLabs Apt key\
-gen_sources: commands to edit /etc/apt/sources.list\
 preinstall_commands: commands to run before installing packages and files\
 postinstall_commands: commands to run after installing packages and files\
+apt-keys: script to install the BunsenLabs Apt key\
+gen_sources: commands to edit /etc/apt/sources.list\
 config: sets some directory paths etc\
 bunsen-netinstall-logs: folder to copy into user's ~/.cache directory
 
 DEBIAN NETINSTALL HINTS
 -----------------------
 
-Installing Debian Bookworm by the netinstall CD is similar to using the standard
-installer.
+Installing Debian Trixie by the netinstall iso is similar to using the standard
+Debian installer.
 
-Two points to watch if you want to use this netinstall script afterwards:
+Two points to watch if you want to use this BunsenLabs netinstall script afterwards:
 
 1) At the "Set up users and passwords" screen, **DO NOT** enter a password for root.
 Type nothing and press "continue".
@@ -112,5 +120,3 @@ what is needed.\
 been preselected. Use the up/down arrows to move, and the spacebar to toggle
 selection.)
 
-The netinstall download and links to documentation can be found here:
-https://www.debian.org/CD/netinst/

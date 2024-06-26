@@ -1,10 +1,10 @@
-This is a network installer for
-BunsenLabs Linux on cli Debian Bookworm.
+This is an experimental network installer for
+BunsenLabs Linux on cli Debian Trixie.
 
-It will use the BunsenLabs Boron repository
+It will use the BunsenLabs Carbon repository
 to download and install necessary packages,
 along with packages from the Debian repositories,
 and do any other necessary configuration.
 
-While there is a good chance of installing a working system,
+This is still very much a Work In Progress, so
 please be ready to deal with any bugs that might show up!
