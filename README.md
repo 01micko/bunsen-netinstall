@@ -34,9 +34,9 @@ Make sure sudo is enabled. (See "DEBIAN NETINSTALL HINTS" below.)
 Boot your Debian cli system, log in and run these commands, as a normal user:
 (A fresh copy of this bunsen-netinstall package will be downloaded.)
 
-    wget https://github.com/bunsenlabs/bunsen-netinstall/archive/carbon.tar.gz
-    tar -xpf carbon.tar.gz
-    cd bunsen-netinstall-carbon
+    wget https://github.com/bunsenlabs/bunsen-netinstall/archive/carbon-wayland.tar.gz
+    tar -xpf carbon-wayland.tar.gz
+    cd bunsen-netinstall-carbon-wayland
     ./install
 
 The installation process will start.
