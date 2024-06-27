@@ -203,6 +203,7 @@ you may wish to continue with the installation,
 otherwise it would be safer to stop.
 Would you like to continue anyway?" 1; }
 
+# TODO this will have to be extended to handle Wayland sessions
 # is X already installed? FIXME Is this the best way to check if there is a desktop system installed already?
 hash startx > /dev/null 2>&1 && { warnlog "Command 'startx' is available. Desktop system already installed?"
     confirm "You seem to have some kind of desktop environment already installed.
@@ -230,26 +231,32 @@ for a BunsenLabs desktop, with many common utilities omitted."
 
 PS3='Please enter the number of your choice > '
 
-select list in 'full' 'lite' 'base'
-do
-    case "$list" in
-    full)
-        pkgs_norecs_file=pkgs-norecs
-        pkgs_recs_file=pkgs-recs
-        break
-        ;;
-    lite)
-        pkgs_norecs_file=pkgs-norecs-lite
-        pkgs_recs_file=pkgs-recs-lite
-        break
-        ;;
-    base)
-        pkgs_norecs_file=pkgs-norecs-base
-        pkgs_recs_file=pkgs-recs-base
-        break
-        ;;
-    esac
-done
+# package list selection dialogue temporarily disabled:
+
+#select list in 'full' 'lite' 'base'
+#do
+#    case "$list" in
+#    full)
+#        pkgs_norecs_file=pkgs-norecs
+#        pkgs_recs_file=pkgs-recs
+#        break
+#        ;;
+#    lite)
+#        pkgs_norecs_file=pkgs-norecs-lite
+#        pkgs_recs_file=pkgs-recs-lite
+#        break
+#        ;;
+#    base)
+#        pkgs_norecs_file=pkgs-norecs-base
+#        pkgs_recs_file=pkgs-recs-base
+#        break
+#        ;;
+#    esac
+#done
+
+# temporary override, use "base" package list:
+pkgs_norecs_file=pkgs-norecs-base
+pkgs_recs_file=pkgs-recs-base
 
 for i in "$pkgs_norecs_file" "$pkgs_recs_file"
 do
