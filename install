@@ -84,7 +84,7 @@ $1
 
 confirm() { # $1 is message, $2 is desired return value: 0 or 1 (passed to 'giveup')
     echo "
-$1
+$*
 (press enter to continue, any other key to exit)
 "
     read -srn1
@@ -94,13 +94,12 @@ $1
 
 option() {
     echo "
-$1
+$*
 (press enter to agree, any other key to pass)
 "
     read -srn1
-    [[ $REPLY ]] && { log "$user did not agree"; return 1; }
+    [[ -n $REPLY ]] && { log "$user did not agree"; return 1; }
     log "$user agreed"
-    return 0
 }
 
 giveup() { # $1 is message, $2 is desired return value: 0 or 1
@@ -537,7 +536,7 @@ shopt -s dotglob # want dotfiles too
 install_sysdir sysfiles2 / "${backup_dir}"
 shopt -u dotglob
 
-# TODO find a more elegant way of handling this:
+# TODO there is a more elegant way of handling this situation:
 # hack to cope with /etc/network/interfaces being undesirably nuked when network-manager is not installed
 [[ $(dpkg-query --show --showformat='${db:Status-Abbrev}' 'network-manager' 2>/dev/null) =~ ^(i|h)i' '$ ]] || {
     msg "Restoring overwritten /etc/network/interfaces
@@ -552,14 +551,21 @@ You may need to edit this file manually to get a working network."
 
 bigmsg "system files installed"
 
-#bigmsg "Updating your personal configuration files.
-#Replaced files wil be backed up with a suffix of $backup_suffix"
+if [[ -d userfiles ]]
+then
+    [[ -f userfiles/README ]] && mv userfiles/README README.tmp # don't want to copy README to $HOME
+    [[ -n "$(ls -A userfiles)" ]] && {
+        bigmsg "Adding some personal configuration files.
+        Any replaced files wil be backed up with a suffix of $backup_suffix"
 
-#shopt -s dotglob # want dotfiles too
-#install_userdir /etc/skel $HOME
-#shopt -u dotglob
+        shopt -s dotglob # want dotfiles too
+        install_userdir userfiles "$HOME"
+        shopt -u dotglob
 
-#bigmsg "Files updated."
+        bigmsg "User files added."
+    }
+    [[ -f README.tmp ]] && mv README.tmp userfiles/README
+fi
 
 # final tweaking
 bigmsg "Adjusting some system settings."

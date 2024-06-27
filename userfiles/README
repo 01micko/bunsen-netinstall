@@ -1,0 +1,5 @@
+Any files placed in this directory (userfiles)
+will be copied into the user's $HOME after installing packages.
+Subdirectories will be preserved.
+
+If you remove this file, git will ignore the empty userfiles directory.

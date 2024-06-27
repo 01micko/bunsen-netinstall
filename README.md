@@ -21,12 +21,12 @@ https://github.com/BunsenLabs/bunsen-netinstall/issues
 HOW TO USE
 ----------
 
-Download the latest Debian trixie "netinstall" .iso file 
+Download the latest Debian trixie "netinstall" .iso file
 and use it to install a basic cli system.
 
 https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso
 
-At present only "weekly" amd64 builds are available, 
+At present only "weekly" amd64 builds are available,
 and there is no longer a Debian i386 netinstall iso image.
 
 Make sure sudo is enabled. (See "DEBIAN NETINSTALL HINTS" below.)
@@ -96,6 +96,7 @@ pkgs-recs-base: packages to install with recommends (base package list)\
 pkgs-norecs-base: packages to install without recommends (base package list)\
 sysfiles1: system files to copy in before installing packages (mainly apt-related)\
 sysfiles2: system files to copy in after installing packages\
+userfiles: any files here will be copied to the user's $HOME\
 preinstall_commands: commands to run before installing packages and files\
 postinstall_commands: commands to run after installing packages and files\
 apt-keys: script to install the BunsenLabs Apt key\
@@ -124,4 +125,3 @@ what is needed.\
 (Some software items will be marked with an asterisk, indicating that they have
 been preselected. Use the up/down arrows to move, and the spacebar to toggle
 selection.)
-
