@@ -84,7 +84,7 @@ $1
 
 confirm() { # $1 is message, $2 is desired return value: 0 or 1 (passed to 'giveup')
     echo "
-$*
+$1
 (press enter to continue, any other key to exit)
 "
     read -srn1
