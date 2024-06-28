@@ -1,7 +1,8 @@
 # commands to run after installing all files and packages
 
-# add any needed extra groups
-for i in #cbnetwork
+# add user to some extra groups
+# NB You should also check sysfiles2/etc/adduser.conf for default groups to add new users to
+for i in audio video cdrom plugdev floppy lp dip
 do
     if grep -q "^${i}:" /etc/group
     then
@@ -10,34 +11,26 @@ do
         msg "adding group $i"
         sudo addgroup $i || errmsg "failed to add group: $i"
     fi
-done
-
-# add user to some extra groups
-# NB You should also check sysfiles2/etc/adduser.conf for default groups to add new users to
-for i in audio video cdrom plugdev floppy lp dip
-do
-    sudo addgroup "$i"
     sudo adduser $user $i || errmsg "failed to add user: $user to group: $i"
 done
-for i in sudo netdev systemd-journal lpadmin scanner bluetooth
+for i in netdev systemd-journal lpadmin scanner bluetooth
 do
-    sudo addgroup --system "$i"
+    if grep -q "^${i}:" /etc/group
+    then
+        msg "group $i already exists"
+    else
+        msg "adding group $i"
+        sudo addgroup --system "$i" || errmsg "failed to add group: $i"
+    fi
     sudo adduser $user $i || errmsg "failed to add user: $user to group: $i"
 done
-
-# make sure gksu runs in sudo mode
-#sudo update-alternatives --set libgksu-gconf-defaults /usr/share/libgksu/debian/gconf-defaults.libgksu-sudo || errmsg "failed to edit alternative for libgksu-gconf-defaults"
-#sudo update-gconf-defaults || errmsg "failed to update gconf defaults"
-
-# set cursor theme to pre-empt Adwaita
-#sudo update-alternatives --set x-cursor-theme /usr/share/icons/DMZ-White/cursor.theme || errmsg "failed to edit alternative for x-cursor-theme"
 
 # dmz-cursor-theme may have been installed after bunsen-configs
 # so re-run the cursor theme setting in bunsen-configs' postinst script.
 DEFAULT_CURSOR_THEME='/usr/share/icons/DMZ-White/cursor.theme'
 if update-alternatives --list x-cursor-theme 2>/dev/null | grep -q "$DEFAULT_CURSOR_THEME"
 then
-    sudo update-alternatives --set x-cursor-theme "$DEFAULT_CURSOR_THEME"
+    sudo update-alternatives --set x-cursor-theme "$DEFAULT_CURSOR_THEME" || errmsg "failed to edit alternative for x-cursor-theme"
 else
     errmsg "failed to edit alternative for x-cursor-theme"
 fi
