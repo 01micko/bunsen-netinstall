@@ -222,15 +222,15 @@ Please make the necessary adjustments to your system and try again." 1
 pkgs_norecs_file=
 pkgs_recs_file=
 
-bigmsg "You can choose to install the \"full\" package list, which is the same as
-what is installed by the usual iso file, or the \"lite\" list,
-which is slightly smaller and more suitable for older machines.
-There is also a \"base\" list which installs only the minimum packages needed
-for a BunsenLabs desktop, with many common utilities omitted."
-
-PS3='Please enter the number of your choice > '
-
 # package list selection dialogue temporarily disabled:
+
+#bigmsg "You can choose to install the \"full\" package list, which is the same as
+#what is installed by the usual iso file, or the \"lite\" list,
+#which is slightly smaller and more suitable for older machines.
+#There is also a \"base\" list which installs only the minimum packages needed
+#for a BunsenLabs desktop, with many common utilities omitted."
+
+#PS3='Please enter the number of your choice > '
 
 #select list in 'full' 'lite' 'base'
 #do
@@ -256,6 +256,7 @@ PS3='Please enter the number of your choice > '
 # temporary override, use "base" package list:
 pkgs_norecs_file=pkgs-norecs-base
 pkgs_recs_file=pkgs-recs-base
+bigmsg "Installing the minimal \"base\" package list"
 
 for i in "$pkgs_norecs_file" "$pkgs_recs_file"
 do
