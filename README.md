@@ -1,9 +1,11 @@
-EXPERIMENTAL
-This "carbon-wayland" branch is for development and testing purposes only.
-Do not use it if you want a working system!
+DO NOT USE THIS TO INSTALL A SYSTEM!
+
+This "carbon-wayland" branch is for development purposes only.\
+It is a platform on which a BL/Wayland installer will be built.
+At present its behaviour is undefined.
 
 
-This is a collection of files intended to install something like
+This will be a collection of files intended to install something like
 BunsenLabs Linux on a basic command-line-only Debian Trixie system,
 in a Wayland environment using the labwc compositor.
 
