@@ -263,6 +263,23 @@ do
     [[ -r $i ]] || giveup "Cannot read package list $i" 1
 done
 
+# temporary workaround to install wayland (wbase)
+
+bigmsg "Do you want to install the wayland base package? (must type \"yes\" if so...)"
+read answer
+case $answer in
+    yes)for i in *-base
+        do
+	    cp -f ${i/base/}wbase $i
+	done
+	log "Using wayland install"
+	msg "Using wayland install"
+      ;;
+      *)log "Using standard install"
+	msg "Using standard install"
+      ;;
+esac
+
 # initial tweaking
 bigmsg "Adjusting some system settings."
 [[ -r preinstall_commands ]] && {

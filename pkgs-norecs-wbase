@@ -14,7 +14,7 @@ hyprlock
 hyprpicker
 inxi
 #jgmenu
-jq
+#jq
 labwc
 labwc-menu-generator
 libfuse2
@@ -37,7 +37,7 @@ pipewire
 pkexec
 policykit-1-gnome
 polkitd
-polkitd-pkla
+#polkitd-pkla
 pulseaudio
 python3
 python3-xdg
@@ -76,5 +76,6 @@ bunsen-configs-base
 #bunsen-exit
 bunsen-images-base
 bunsen-numix-icon-theme
+bunsen-os-release
 bunsen-themes-base
 bunsen-thunar
