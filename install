@@ -269,9 +269,8 @@ bigmsg "Do you want to install the wayland base package? (must type \"yes\" if s
 read answer
 case $answer in
     yes)for i in *-base
-        do
-	    cp -f ${i/base/}wbase $i
-	done
+        pkgs_norecs_file=pkgs-norecs-wbase
+	pkgs_recs_file=pkgs-recs-wbase
 	log "Using wayland install"
 	msg "Using wayland install"
       ;;
