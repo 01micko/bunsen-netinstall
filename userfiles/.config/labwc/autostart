@@ -6,7 +6,7 @@ fi
 
 sfwbar &
 
-type conky >/dev/null 2>&1 ; then
+if type conky >/dev/null 2>&1 ; then
   conky -c $HOME/.config/conky/BL-Boron-conky-wayland.conf &
 fi
 
@@ -16,7 +16,7 @@ pidof thunar >/dev/null 2>&1 || thunar --daemon &
 type cliphist >/dev/null 2>&1 && wl-paste --watch cliphist store &
 
 # screen blank/lock
-if type hyprlock >/dev/null >/dev/null 2>&1 ; then 
+if type hyprlock >/dev/null 2>&1 ; then 
   swayidle -w \
 	timeout 360 'hyprlock &' \
 	timeout 720 'wlopm --off \*' \
