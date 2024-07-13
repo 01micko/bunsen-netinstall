@@ -3,6 +3,8 @@
 #arandr
 azote
 #conky-all
+conky-wl
+curl
 dillo
 dmz-cursor-theme
 galternatives
@@ -14,7 +16,7 @@ hyprlock
 hyprpicker
 inxi
 #jgmenu
-#jq
+jq
 labwc
 labwc-menu-generator
 libfuse2
