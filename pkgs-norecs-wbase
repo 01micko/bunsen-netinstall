@@ -74,7 +74,7 @@ yad
 ## todo bunsen-configs-wbase to replace bunsen-configs-base
 bunsen-archive-keyring
 bunsen-common
-bunsen-configs-base
+bunsen-configs-wbase
 #bunsen-exit
 bunsen-images-base
 bunsen-numix-icon-theme
