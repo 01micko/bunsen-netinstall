@@ -3,7 +3,7 @@
 # and this file must be present.
 
 # Debian release that this BunsenLabs system will be based on (lowercase)
-debian_base=trixie
+debian_base=sid
 
 # in case script is run after installing bunsen-os-release (lowercase too)
 bunsen_codename=carbon
